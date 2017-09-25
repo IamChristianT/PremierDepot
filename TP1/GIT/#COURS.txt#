@@ -1,0 +1,40 @@
+git:
+*Historique
+*outils de travail collaboratif
+*En parallèle => code distinct
+
+system naïf c'est tout sur un ordi local
+Sytem svn: stocké sur un serveur distant, et sur les ordi locaux copie. Lhistorique n'est pas conservé (si le server est down, c'est mort).
+System git: copie en local du serveur distant. Toutes les modifs sont faites en local. Une fois les modif fini, on push pour mettre en ligne.
+
+Répertoire courant avec un fichier, passe par une étape d'indexation.
+
+Index: fichier qui récapitule les fichiers mis sous version, les fichiers non mis sous version, les fichiers modifiers.
+
+Puis une étape de validation (commit) sont effectué sur le dépot local.
+
+Enfin envoie sur le dépôt distant, on push.
+
+Mettre sous version(fichier non versionné):
+1) Indexation (add)
+2) Commit
+3) Envoi (push)
+
+Fichier versionnée, non modifié: (fichier que l'on a modif en local et qu el'on veut update)
+1) Commit (validation des modification)
+2) Push
+
+Pour récup un fichier on pull, permet de revenir sur le répertoire courant.
+fetch permet seulement de recup le fichier sur le dépôt local. (il vaut mieux si on travail à plusieurs sur le même bout de code). Il faut cependant faire une étape de récupération des fichiers pour revenir au répertoire courant
+
+La branche master est celle qui contient tous les commits STABLE, version qui marche.
+Les branches: implémenter des fonctionalités en cours de dév
+
+Mise sous version d'une fonctionnalité dans master:
+* merge (fusion)
+* release
+
+Merge: ajoute un commit au master qui sert de fusion avec la branche qui était en dev. Il permet de conserver la tracabilité => suivi des bugs
+
+Nouveaux commit résultant de la fusion:
+Release: les deux commits de la branches vont se mettre sur le master. Facilite la lecture de l'historique

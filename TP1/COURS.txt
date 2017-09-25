@@ -1,0 +1,38 @@
+$@ cible
+$^ dependance
+
+
+Deux étapes:
+* Compilation (passage .c à .o)
+  -I/chemin/vers/include (header .h)
+*Edition de liens (utilsiation des .o pour faire des exe, chercher les codes sources qui ne sont pas présent dans le .h)
+	 --> Bibliothèques
+	     /usr/lib (dans le cas de l'installation en root)
+	     -lQtCore -lQtGui
+
+	     En local;
+	     -L/chemin/vers/bibliothèque/locale
+	     -lqcustomplot
+
+
+.so est une bibliothèque partagé.
+pour retrouver la bibliothèque à l'exécution:
+export LD_LIBRARY_PATH= (chemin vers la bibliothèque)
+
+
+makefile de la fenetre
+
+sources = gui_simple.cpp
+objets = $(sources:.cpp=.o)
+
+GUISimple : $(objets)
+	g++ -lQtGui -lQtCore $^ -o $@
+
+gui_simple.o : gui_simple.cpp
+	g++ -I/usr/include/qt4/ -I/usr/include/qt4/QtGui/ -I/usr/include/qt4/QtCore/ -c  $^ -o $@ 
+
+
+clean :
+	rm -f *~ *.o
+mrproper : clean
+	rm -f GUISimple
